@@ -19,17 +19,17 @@
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "concurrently": "^7.0.0",
-    "cors": "^2.8.5",
-    "dotenv": "^14.3.2",
-    "helmet": "^5.0.2",
     "jest": "^27.4.7",
-    "morgan": "^1.10.0",
     "nodemon": "^2.0.15",
     "superagent": "^7.1.1",
     "supertest": "^6.2.2"
   },
   "dependencies": {
     "express": "^4.17.2",
-    "mongoose": "^6.1.8"
+    "mongoose": "^6.1.8",
+    "cors": "^2.8.5",
+    "dotenv": "^14.3.2",
+    "helmet": "^5.0.2",
+    "morgan": "^1.10.0"
   }
 }
