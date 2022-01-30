@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="text-center pt-5 pb-5 container"
+>
+  <h1>
+    404 page not found
+  </h1>
+  <p>
+    The page you are trying to visit could not be found
+  </p>
+  <button
+    className="btn btn-primary"
+    disabled={false}
+    onClick={[Function]}
+    type="button"
+  >
+    Go to homepage
+  </button>
+</div>
+`;
