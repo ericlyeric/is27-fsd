@@ -1,21 +1,21 @@
 import axios from "axios";
 
 export async function createBoat(payload) {
-  const response = await axios.post("/api/boat", payload);
   try {
-    return response.data;
+    const response = await axios.post("/api/boat", payload);
+    return response;
   } catch (error) {
-    return {
-      message: "Error creating boat",
-    };
+    console.log(error);
+    return error.response;
   }
 }
 
 export async function deleteBoat(id) {
-  const response = await axios.delete(`/api/boat/${id}`);
   try {
+    const response = await axios.delete(`/api/boat/${id}`);
     return response.data;
   } catch (error) {
+    console.log(error);
     return {
       message: "Error deleting boat",
     };

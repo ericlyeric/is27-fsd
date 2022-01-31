@@ -13,12 +13,24 @@ exports.get_boat = async function (req, res, next) {
 // a new boat is added to the 'docked' list
 exports.create_boat = async function (req, res, next) {
   try {
+    // check the length of the entered boat name
+    if (req.body.name.length > 8) {
+      res.status(400).json({
+        message: "Please keep boat name under 9 characters",
+      });
+      throw new Error();
+    }
     // check if Docked swimlane exists
     const checkSwimLane = await SwimLane.findOne({ name: "Docked" });
     if (!checkSwimLane) throw new Error("Docked swim lane does not exist");
     // check if boat name already exists
     const checkBoatName = await Boat.exists({ name: req.body.name });
-    if (checkBoatName) throw new Error(`${req.body.name} already exists`);
+    if (checkBoatName) {
+      res.status(400).json({
+        message: `${req.body.name} already exists`,
+      });
+      throw new Error();
+    }
     const boat = new Boat({ name: req.body.name, status: checkSwimLane._id });
     await boat.save();
     // update swimLane
@@ -29,7 +41,6 @@ exports.create_boat = async function (req, res, next) {
       data: boat,
     });
   } catch (error) {
-    // write a handler for errors
     return next(error);
   }
 };

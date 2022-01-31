@@ -4,6 +4,7 @@ import { useLocation } from "react-router-dom";
 import { createBoat } from "../api/boatApi";
 import { getAllSwimLanes } from "../api/swimLaneApi";
 import { useSwimLaneContext } from "../context/SwimLaneContext";
+import { toast } from "react-toastify";
 
 export default function Header() {
   const [_, setSwimLanes] = useSwimLaneContext();
@@ -13,7 +14,10 @@ export default function Header() {
     name: "",
   });
 
-  const handleClose = () => setShowForm(false);
+  const handleClose = () => {
+    setShowForm(false);
+    setForm({ name: "" });
+  };
   const handleShow = () => setShowForm(true);
 
   const handleOnChange = (e) => {
@@ -25,9 +29,11 @@ export default function Header() {
 
   const handleSubmitForm = async () => {
     const response = await createBoat(form);
-    if (response.message) {
+    if (response.status === 201) {
       const response = await getAllSwimLanes();
       setSwimLanes(response);
+    } else {
+      toast.error(response.data.message);
     }
     handleClose();
   };
@@ -58,13 +64,23 @@ export default function Header() {
               placeholder="Enter boat name"
               onChange={(e) => handleOnChange(e)}
             />
+            <Form.Text
+              style={{ color: form.name.length < 9 ? "black" : "red" }}
+            >
+              Please keep the boat name under 9 characters, current count{" "}
+              {form.name.length}
+            </Form.Text>
           </Form.Group>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="danger" onClick={() => handleClose()}>
             Cancel
           </Button>
-          <Button variant="success" onClick={() => handleSubmitForm()}>
+          <Button
+            variant="success"
+            onClick={() => handleSubmitForm()}
+            disabled={form.name.length >= 9}
+          >
             Save
           </Button>
         </Modal.Footer>

@@ -37,8 +37,6 @@ app.get("/", (req, res) => {
 app.use(`${process.env.BASE_API_URL}/boat`, boatRouter);
 app.use(`${process.env.BASE_API_URL}/swimlane`, swimlaneRouter);
 
-console.log(process.env.PORT);
-
 if (process.env.NODE_ENV === "production") {
   app.use(express.static(path.resolve(__dirname, "../client", "build")));
 
