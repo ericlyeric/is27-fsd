@@ -1,5 +1,5 @@
 # is27-fsd
-A simple Web application that tracks and manages boats, the web application works on mobile and on a PC.
+A simple Web application that tracks and manages boats, the web application works on mobile and on a PC. The web application can be found [here](https://is27-fsd.herokuapp.com/) (if the application is taking a while to load, try to refresh the page; it's hosted on Heroku and the service takes some time to 'warm-up' if it hasn't had any visitors recently)
 
 # Tech Stack
 React.js, Node.js, Express.js, MongoDB, Jest
