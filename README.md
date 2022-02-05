@@ -22,5 +22,5 @@ React.js, Node.js, Express.js, MongoDB, Jest
 - the back-end has a few ajax request tests
 
 # Notes
-- application is deployed no Heroku (front-end + back-end)
+- application is deployed to Heroku (front-end + back-end)
 - some endpoints in the service are not used in the front-end, the routes were used during development
